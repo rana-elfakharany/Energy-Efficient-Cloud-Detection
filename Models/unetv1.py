@@ -20,6 +20,8 @@ from tensorflow.keras.callbacks import EarlyStopping, CSVLogger, TensorBoard
 import segmentation_models as sm
 
 from sklearn.model_selection import KFold
+from tensorflow.keras import backend as K
+from sklearn.metrics import f1_score
 
 warnings.filterwarnings('ignore')
 plt.style.use("ggplot")
@@ -119,9 +121,6 @@ with tf.device('/device:GPU:3'):
         model = Model(inputs, outputs, name="Unet")
         return model
       
-    from tensorflow.keras import backend as K
-    from sklearn.metrics import f1_score
-    
     K.clear_session()
         
     metrics = ['accuracy',
